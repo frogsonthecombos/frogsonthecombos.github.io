@@ -1,749 +1,349 @@
 
-/* ==========================================
+/* =========================================================
    FROGS // NEXUS
    MAIN JAVASCRIPT
-========================================== */
+========================================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-/* ==========================================
-   MODULE LINKS
-   =========================================
+    /* =====================================================
+       MODULE BUTTONS
+       Opens each data-url in a NEW TAB
+    ===================================================== */
 
-   Put your real URLs here.
+    const modules = document.querySelectorAll(".module");
 
-   Every module opens in a NEW TAB.
+    modules.forEach((module) => {
 
-========================================== */
+        module.addEventListener("click", () => {
 
-const moduleLinks = {
+            const url = module.dataset.url;
 
-    HOME:
-        "https://example.com",
+            if (!url || url === "https://example.com") {
+                console.warn("No valid URL configured for this module.");
+                return;
+            }
 
-    GAMES:
-        "https://example.com",
+            // Small click animation
+            module.style.transform = "translateY(-2px) scale(0.98)";
 
-    PROJECTS:
-        "https://example.com",
+            setTimeout(() => {
+                module.style.transform = "";
+            }, 120);
 
-    TOOLS:
-        "https://example.com",
-
-    MEDIA:
-        "https://example.com",
-
-    ABOUT:
-        "https://example.com",
-
-    STATUS:
-        "https://example.com",
-
-    SECRET:
-        "https://example.com"
-
-};
-
-
-/* ==========================================
-   PARTICLES
-========================================== */
-
-const particleContainer =
-    document.getElementById("particles");
-
-
-for (let i = 0; i < 55; i++) {
-
-    const particle =
-        document.createElement("div");
-
-    particle.className =
-        "particle";
-
-    particle.style.left =
-        Math.random() * 100 + "%";
-
-    particle.style.animationDuration =
-        (Math.random() * 14 + 8) + "s";
-
-    particle.style.animationDelay =
-        (Math.random() * 12) + "s";
-
-    const size =
-        Math.random() * 2 + 1;
-
-    particle.style.width =
-        size + "px";
-
-    particle.style.height =
-        size + "px";
-
-    particleContainer.appendChild(
-        particle
-    );
-}
-
-
-/* ==========================================
-   CLOCK
-========================================== */
-
-function updateClock() {
-
-    const now =
-        new Date();
-
-    const hours =
-        String(
-            now.getHours()
-        ).padStart(2, "0");
-
-    const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(2, "0");
-
-    const seconds =
-        String(
-            now.getSeconds()
-        ).padStart(2, "0");
-
-    document.getElementById(
-        "clock"
-    ).textContent =
-        `${hours}:${minutes}:${seconds}`;
-}
-
-
-setInterval(
-    updateClock,
-    1000
-);
-
-updateClock();
-
-
-/* ==========================================
-   TYPING TERMINAL
-========================================== */
-
-const terminalMessages = [
-
-    "Nexus connection established.",
-
-    "All systems responding normally.",
-
-    "Awaiting module selection.",
-
-    "Secure channel initialized.",
-
-    "Welcome back, operator."
-
-];
-
-
-let messageIndex = 0;
-
-let characterIndex = 0;
-
-let deleting = false;
-
-
-const typingElement =
-    document.getElementById(
-        "typingText"
-    );
-
-
-function typeTerminal() {
-
-    const message =
-        terminalMessages[
-            messageIndex
-        ];
-
-
-    if (!deleting) {
-
-        typingElement.textContent =
-            message.substring(
-                0,
-                characterIndex + 1
+            // Open destination in a new tab
+            window.open(
+                url,
+                "_blank",
+                "noopener,noreferrer"
             );
 
-        characterIndex++;
+        });
+
+    });
 
 
-        if (
-            characterIndex >=
-            message.length
-        ) {
+    /* =====================================================
+       CLOCK
+    ===================================================== */
 
-            deleting = true;
+    const clock = document.getElementById("clock");
 
-            setTimeout(
-                typeTerminal,
-                1800
+    function updateClock() {
+
+        if (!clock) return;
+
+        const now = new Date();
+
+        const hours =
+            String(now.getHours()).padStart(2, "0");
+
+        const minutes =
+            String(now.getMinutes()).padStart(2, "0");
+
+        const seconds =
+            String(now.getSeconds()).padStart(2, "0");
+
+        clock.textContent =
+            `${hours}:${minutes}:${seconds}`;
+    }
+
+    updateClock();
+
+    setInterval(updateClock, 1000);
+
+
+    /* =====================================================
+       TERMINAL TEXT
+    ===================================================== */
+
+    const terminalText =
+        document.getElementById("terminalText");
+
+    const messages = [
+        "initializing secure connection...",
+        "checking mainframe status...",
+        "connection established.",
+        "nexus systems online.",
+        "awaiting user input..."
+    ];
+
+    let messageIndex = 0;
+
+    function cycleTerminalText() {
+
+        if (!terminalText) return;
+
+        messageIndex =
+            (messageIndex + 1) % messages.length;
+
+        terminalText.style.opacity = "0";
+
+        setTimeout(() => {
+
+            terminalText.textContent =
+                messages[messageIndex];
+
+            terminalText.style.opacity = "1";
+
+        }, 300);
+    }
+
+    setInterval(cycleTerminalText, 3500);
+
+
+    /* =====================================================
+       PARTICLES
+    ===================================================== */
+
+    const particleContainer =
+        document.getElementById("particles");
+
+    if (particleContainer) {
+
+        for (let i = 0; i < 45; i++) {
+
+            const particle =
+                document.createElement("div");
+
+            particle.className = "particle";
+
+            particle.style.left =
+                `${Math.random() * 100}%`;
+
+            particle.style.animationDuration =
+                `${8 + Math.random() * 15}s`;
+
+            particle.style.animationDelay =
+                `${Math.random() * -15}s`;
+
+            particle.style.opacity =
+                `${0.15 + Math.random() * 0.6}`;
+
+            particleContainer.appendChild(
+                particle
             );
-
-            return;
-        }
-
-    } else {
-
-        typingElement.textContent =
-            message.substring(
-                0,
-                characterIndex - 1
-            );
-
-        characterIndex--;
-
-
-        if (characterIndex <= 0) {
-
-            deleting = false;
-
-            messageIndex =
-                (messageIndex + 1) %
-                terminalMessages.length;
         }
     }
 
 
-    setTimeout(
-        typeTerminal,
-        deleting ? 25 : 45
-    );
-}
-
-
-typeTerminal();
-
-
-/* ==========================================
-   LOCAL VIEW COUNTER
-========================================== */
-
-let views =
-    Number(
-        localStorage.getItem(
-            "frogsNexusViews"
-        ) || 0
-    );
-
-
-views++;
-
-
-localStorage.setItem(
-    "frogsNexusViews",
-    views
-);
-
-
-document.getElementById(
-    "viewCount"
-).textContent =
-    String(views).padStart(
-        6,
-        "0"
-    );
-
-
-/* ==========================================
-   SESSION TIMER
-========================================== */
-
-const sessionStart =
-    Date.now();
-
-
-function updateSession() {
-
-    const elapsed =
-        Math.floor(
-            (
-                Date.now() -
-                sessionStart
-            ) / 1000
-        );
-
-
-    const minutes =
-        Math.floor(
-            elapsed / 60
-        );
-
-
-    const seconds =
-        elapsed % 60;
-
-
-    document.getElementById(
-        "sessionTime"
-    ).textContent =
-        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-}
-
-
-setInterval(
-    updateSession,
-    1000
-);
-
-
-/* ==========================================
-   UPTIME
-========================================== */
-
-const uptimeStart =
-    Date.now();
-
-
-function updateUptime() {
-
-    const elapsed =
-        Math.floor(
-            (
-                Date.now() -
-                uptimeStart
-            ) / 1000
-        );
-
-
-    const hours =
-        Math.floor(
-            elapsed / 3600
-        );
-
-
-    const minutes =
-        Math.floor(
-            (elapsed % 3600) / 60
-        );
-
-
-    const seconds =
-        elapsed % 60;
-
-
-    document.getElementById(
-        "uptime"
-    ).textContent =
-        `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-}
-
-
-setInterval(
-    updateUptime,
-    1000
-);
-
-
-/* ==========================================
-   FAKE LIVE LATENCY DISPLAY
-========================================== */
-
-const latencyElement =
-    document.getElementById(
-        "latency"
-    );
-
-
-function updateLatency() {
+    /* =====================================================
+       FAKE NETWORK LATENCY DISPLAY
+    ===================================================== */
 
     const latency =
-        Math.floor(
-            Math.random() * 15
-        ) + 18;
+        document.getElementById("latency");
 
+    function updateLatency() {
 
-    latencyElement.textContent =
-        `${latency} MS`;
-}
+        if (!latency) return;
 
+        const value =
+            Math.floor(
+                18 + Math.random() * 25
+            );
 
-setInterval(
-    updateLatency,
-    3000
-);
+        latency.textContent =
+            `${value} MS`;
+    }
 
-updateLatency();
+    updateLatency();
 
-
-/* ==========================================
-   BUTTONS
-========================================== */
-
-const modules =
-    document.querySelectorAll(
-        ".module"
+    setInterval(
+        updateLatency,
+        4000
     );
 
 
-modules.forEach(
-    module => {
+    /* =====================================================
+       SESSION TIMER
+    ===================================================== */
 
-        module.addEventListener(
+    const sessionTime =
+        document.getElementById("sessionTime");
+
+    let sessionSeconds = 0;
+
+    function updateSession() {
+
+        if (!sessionTime) return;
+
+        sessionSeconds++;
+
+        const minutes =
+            Math.floor(
+                sessionSeconds / 60
+            );
+
+        const seconds =
+            sessionSeconds % 60;
+
+        sessionTime.textContent =
+            `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    setInterval(
+        updateSession,
+        1000
+    );
+
+
+    /* =====================================================
+       LOCAL SESSION COUNTER
+       This is NOT a global visitor counter.
+    ===================================================== */
+
+    const visitorCount =
+        document.getElementById("visitorCount");
+
+    if (visitorCount) {
+
+        let count =
+            Number(
+                localStorage.getItem(
+                    "frogsLocalViews"
+                ) || 0
+            );
+
+        count++;
+
+        localStorage.setItem(
+            "frogsLocalViews",
+            count
+        );
+
+        visitorCount.textContent =
+            count.toLocaleString();
+    }
+
+
+    /* =====================================================
+       FULLSCREEN BUTTON
+    ===================================================== */
+
+    const fullscreenButton =
+        document.getElementById(
+            "fullscreenButton"
+        );
+
+    if (fullscreenButton) {
+
+        fullscreenButton.addEventListener(
             "click",
-            () => {
+            async () => {
 
-                const name =
-                    module.dataset.module;
+                try {
 
+                    if (!document.fullscreenElement) {
 
-                const url =
-                    moduleLinks[name];
+                        await document.documentElement
+                            .requestFullscreen();
 
+                    } else {
 
-                console.log(
-                    `[NEXUS] MODULE REQUEST: ${name}`
-                );
+                        await document.exitFullscreen();
 
+                    }
 
-                playClick();
-
-
-                /*
-                    Don't navigate if the
-                    URL hasn't been configured.
-                */
-
-                if (
-                    !url ||
-                    url.includes(
-                        "example.com"
-                    )
-                ) {
+                } catch (error) {
 
                     console.log(
-                        `[NEXUS] ${name} has no configured destination.`
+                        "Fullscreen unavailable:",
+                        error
                     );
 
-                    showTemporaryMessage(
-                        `${name} MODULE NOT CONFIGURED`
-                    );
-
-                    return;
                 }
-
-
-                /*
-                    Open destination in
-                    a completely new tab.
-                */
-
-                window.open(
-                    url,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
 
             }
         );
-
     }
-);
 
 
-/* ==========================================
-   TEMPORARY SYSTEM MESSAGE
-========================================== */
+    /* =====================================================
+       ORB MOUSE EFFECT
+    ===================================================== */
 
-function showTemporaryMessage(
-    message
-) {
+    const orb =
+        document.querySelector(".orb");
 
-    const notification =
-        document.createElement(
-            "div"
+    if (orb) {
+
+        document.addEventListener(
+            "mousemove",
+            (event) => {
+
+                const x =
+                    (event.clientX /
+                        window.innerWidth -
+                        0.5) * 12;
+
+                const y =
+                    (event.clientY /
+                        window.innerHeight -
+                        0.5) * -12;
+
+                orb.style.transform =
+                    `translate(${x}px, ${y}px)`;
+            }
         );
-
-
-    notification.textContent =
-        message;
-
-
-    notification.style.position =
-        "fixed";
-
-    notification.style.left =
-        "50%";
-
-    notification.style.bottom =
-        "30px";
-
-    notification.style.transform =
-        "translateX(-50%)";
-
-    notification.style.padding =
-        "12px 18px";
-
-    notification.style.border =
-        "1px solid rgba(139,108,255,.5)";
-
-    notification.style.borderRadius =
-        "10px";
-
-    notification.style.background =
-        "rgba(10,10,18,.95)";
-
-    notification.style.color =
-        "#b9adff";
-
-    notification.style.font =
-        "9px monospace";
-
-    notification.style.letterSpacing =
-        "2px";
-
-    notification.style.zIndex =
-        "9999";
-
-    notification.style.boxShadow =
-        "0 10px 40px rgba(0,0,0,.4)";
-
-
-    document.body.appendChild(
-        notification
-    );
-
-
-    setTimeout(
-        () => {
-
-            notification.style.opacity =
-                "0";
-
-            notification.style.transition =
-                "opacity .3s";
-
-            setTimeout(
-                () => notification.remove(),
-                300
-            );
-
-        },
-        1800
-    );
-}
-
-
-/* ==========================================
-   UI SOUND
-========================================== */
-
-let soundEnabled =
-    true;
-
-
-const soundToggle =
-    document.getElementById(
-        "soundToggle"
-    );
-
-
-let audioContext = null;
-
-
-function getAudioContext() {
-
-    if (!audioContext) {
-
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-        if (!AudioContext) {
-            return null;
-        }
-
-        audioContext =
-            new AudioContext();
-    }
-
-    return audioContext;
-}
-
-
-function playClick() {
-
-    if (!soundEnabled) {
-        return;
     }
 
 
-    const audio =
-        getAudioContext();
+    /* =====================================================
+       MODULE HOVER SOUND-LIKE FEEDBACK
+       Visual only — no audio required.
+    ===================================================== */
 
-
-    if (!audio) {
-        return;
-    }
-
-
-    if (
-        audio.state ===
-        "suspended"
-    ) {
-
-        audio.resume();
-    }
-
-
-    const oscillator =
-        audio.createOscillator();
-
-
-    const gain =
-        audio.createGain();
-
-
-    oscillator.type =
-        "sine";
-
-
-    oscillator.frequency.setValueAtTime(
-        650,
-        audio.currentTime
-    );
-
-
-    oscillator.frequency.exponentialRampToValueAtTime(
-        350,
-        audio.currentTime + 0.07
-    );
-
-
-    gain.gain.setValueAtTime(
-        0.025,
-        audio.currentTime
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audio.currentTime + 0.07
-    );
-
-
-    oscillator.connect(
-        gain
-    );
-
-
-    gain.connect(
-        audio.destination
-    );
-
-
-    oscillator.start();
-
-
-    oscillator.stop(
-        audio.currentTime + 0.07
-    );
-}
-
-
-soundToggle.addEventListener(
-    "click",
-    () => {
-
-        soundEnabled =
-            !soundEnabled;
-
-
-        soundToggle.textContent =
-            soundEnabled
-                ? "◉"
-                : "○";
-
-
-        if (soundEnabled) {
-            playClick();
-        }
-
-    }
-);
-
-
-/* ==========================================
-   MODULE HOVER EFFECT
-========================================== */
-
-modules.forEach(
-    module => {
+    modules.forEach((module) => {
 
         module.addEventListener(
             "mouseenter",
             () => {
 
-                if (soundEnabled) {
-                    // Very subtle hover feedback.
-                    // Intentionally quieter than click.
-                }
+                module.classList.add(
+                    "module-active"
+                );
 
             }
         );
 
-    }
-);
+        module.addEventListener(
+            "mouseleave",
+            () => {
 
+                module.classList.remove(
+                    "module-active"
+                );
 
-/* ==========================================
-   KEYBOARD SHORTCUTS
-========================================== */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        /*
-            Number keys 1-8 open
-            the corresponding module.
-        */
-
-        const number =
-            Number(event.key);
-
-
-        if (
-            number >= 1 &&
-            number <= 8
-        ) {
-
-            const module =
-                modules[number - 1];
-
-
-            if (module) {
-                module.click();
             }
+        );
 
-        }
-
-    }
-);
+    });
 
 
-/* ==========================================
-   CONSOLE BRANDING
-========================================== */
+    console.log(
+        "%c FROGS // NEXUS ONLINE ",
+        "background:#090812;color:#a996ff;font-weight:bold;padding:8px;"
+    );
 
-console.log(
-    "%c FROGS // NEXUS ",
-    "color:#9b83ff;font-size:22px;font-weight:800;"
-);
-
-console.log(
-    "%c SYSTEM ONLINE ",
-    "color:#55e6a5;font-size:11px;"
-);
-
-console.log(
-    "%c 8 MODULES AVAILABLE ",
-    "color:#59e1ff;font-size:10px;"
-);
-
+});
