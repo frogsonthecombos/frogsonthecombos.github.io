@@ -4,49 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Frogs on the Combos 🐸</title>
+    <title>FROGS // MAINFRAME</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- CSS from jsDelivr -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/frogsonthecombos/frogsonthecombos.github.io@main/style.css"
+    >
 
     <!-- Google AdSense -->
-    <script async
+    <script
+        async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5735920394950369"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
 
-    <main class="container">
+    <div class="grid"></div>
+    <div class="scanlines"></div>
+    <div class="particles" id="particles"></div>
 
-        <h1>🐸 Frogs on the Combos</h1>
+    <main class="mainframe">
 
-        <p id="message">Welcome to my random website!</p>
+        <!-- TOP BAR -->
+        <header class="topbar">
 
-        <button id="frogButton">Click Me!</button>
+            <div class="brand">
+                <span class="status-dot"></span>
+                FROGS//MAINFRAME
+            </div>
 
-        <div class="frog">🐸</div>
+            <div class="top-status">
+                <span id="connectionStatus">SECURE</span>
+                <span>•</span>
+                <span id="clock">00:00:00</span>
+            </div>
 
-        <p>You've found the secret frog website.</p>
+        </header>
 
-        <!-- Classroom AdSense ad -->
-        <div class="ad-box">
 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-5735920394950369"
-                 data-ad-slot="5886119555"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="terminal-label">
+                SYSTEM://WELCOME
+            </div>
+
+            <h1>
+                ACCESS <span>GRANTED</span>
+            </h1>
+
+            <div class="terminal-text">
+                <span id="typingText"></span>
+                <span class="cursor">█</span>
+            </div>
+
+            <div class="system-info">
+
+                <div>
+                    <small>SYSTEM</small>
+                    <strong>ONLINE</strong>
+                </div>
+
+                <div>
+                    <small>SECURITY</small>
+                    <strong>ACTIVE</strong>
+                </div>
+
+                <div>
+                    <small>NETWORK</small>
+                    <strong>CONNECTED</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MODULES -->
+        <section class="dashboard">
+
+            <div class="section-title">
+                <span>01</span>
+                MAINFRAME MODULES
+            </div>
+
+            <div class="button-grid">
+
+                <button class="module" data-name="HOME">
+                    <div class="module-number">01</div>
+                    <div class="module-icon">⌂</div>
+
+                    <div class="module-content">
+                        <strong>HOME</strong>
+                        <small>MAIN TERMINAL</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+
+                <button class="module" data-name="GAMES">
+                    <div class="module-number">02</div>
+                    <div class="module-icon">◈</div>
+
+                    <div class="module-content">
+                        <strong>GAMES</strong>
+                        <small>GAME CENTER</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+
+                <button class="module" data-name="PROJECTS">
+                    <div class="module-number">03</div>
+                    <div class="module-icon">⌘</div>
+
+                    <div class="module-content">
+                        <strong>PROJECTS</strong>
+                        <small>ACTIVE BUILDS</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+
+                <button class="module" data-name="TOOLS">
+                    <div class="module-number">04</div>
+                    <div class="module-icon">⚙</div>
+
+                    <div class="module-content">
+                        <strong>TOOLS</strong>
+                        <small>UTILITY CENTER</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+
+                <button class="module" data-name="MEDIA">
+                    <div class="module-number">05</div>
+                    <div class="module-icon">◉</div>
+
+                    <div class="module-content">
+                        <strong>MEDIA</strong>
+                        <small>MEDIA ARCHIVE</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+
+                <button class="module" data-name="ABOUT">
+                    <div class="module-number">06</div>
+                    <div class="module-icon">?</div>
+
+                    <div class="module-content">
+                        <strong>ABOUT</strong>
+                        <small>SYSTEM INFO</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+
+                <button class="module" data-name="STATUS">
+                    <div class="module-number">07</div>
+                    <div class="module-icon">▣</div>
+
+                    <div class="module-content">
+                        <strong>STATUS</strong>
+                        <small>NETWORK STATUS</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+
+                <button class="module" data-name="SECRET">
+                    <div class="module-number">08</div>
+                    <div class="module-icon">◆</div>
+
+                    <div class="module-content">
+                        <strong>SECRET</strong>
+                        <small>CLASSIFIED</small>
+                    </div>
+
+                    <div class="arrow">→</div>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATS -->
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <small>VISITS</small>
+
+                <strong id="viewCount">
+                    000000
+                </strong>
+
+                <span>
+                    LOCAL COUNTER
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <small>SESSION</small>
+
+                <strong id="sessionTime">
+                    00:00
+                </strong>
+
+                <span>
+                    TIME ONLINE
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <small>STATUS</small>
+
+                <strong class="online">
+                    ● ONLINE
+                </strong>
+
+                <span>
+                    MAINFRAME ACTIVE
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADSENSE -->
+        <section class="ad-section">
+
+            <div class="ad-label">
+                ADVERTISEMENT
+            </div>
+
+            <ins
+                class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-5735920394950369"
+                data-ad-slot="5886119555"
+                data-ad-format="auto"
+                data-full-width-responsive="true">
+            </ins>
 
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
 
-        </div>
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <span>
+                FROGS//MAINFRAME
+            </span>
+
+            <span>
+                SYSTEM BUILD 2026
+            </span>
+
+            <button id="soundToggle">
+                SOUND: ON
+            </button>
+
+        </footer>
 
     </main>
 
-    <script src="script.js"></script>
+
+    <!-- JavaScript from jsDelivr -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/frogsonthecombos/frogsonthecombos.github.io@main/script.js">
+    </script>
 
 </body>
 </html>
